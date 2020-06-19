@@ -5,9 +5,9 @@ Requirements:
 opencv
 dlib
 face-recognition
-ecapture 
+ecapture
 argparse
-numpy 
+numpy
 imutils
 pickle
 

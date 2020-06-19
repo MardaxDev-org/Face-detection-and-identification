@@ -1,3 +1,4 @@
+# This program will check if the eyes are open or closed.
 import cv2
 import dlib
 from math import hypot
@@ -6,7 +7,7 @@ import os
 from ecapture import ecapture as ec
 from cv2 import *
 
-
+#set camera
 cap = cv2.VideoCapture(0)
 
 
@@ -54,6 +55,7 @@ def cb():
             right_eye_ratio = get_blinking_ratio([42, 43, 44, 45, 46, 47], landmarks)
             blinking_ratio = (left_eye_ratio + right_eye_ratio) / 2
 
+            # if eyes are closed
             if blinking_ratio > 5.7 and sff == 1:
                 cv2.putText(frame, "BLINKING", (50, 150), font, 7, (255, 0, 0))
                 countblinksformeplease = countblinksformeplease + 1
@@ -62,29 +64,32 @@ def cb():
                 sff = 0
                 time.sleep(0.5)
 
+            # If eyes are open wait for the eyes to close
             while blinking_ratio < 5.6 and sff == 0 and countblinksformeplease != 2:
                 time.sleep(1)
                 sff = 1
                 print("OPEN!")
-
                 break
-
+            # When the person is actualy living
             while countblinksformeplease >= 2:
+                # Take a picture of the person
                 ec.capture(0, False, "person.png")
-                # er is een levend persoon
                 countblinksformeplease = 0
+                # close all windows
                 cv2.destroyAllWindows()
                 time.sleep(0.5)
                 print(countblinksformeplease)
                 cap.release()
+                # start face recognition program
                 os.system('python id.py --encodings encodings.pickle --image person.png')
-                quit()
+                print("ERROR!!! line 84: program id.py hasn't started or has quit.")
+                exit()
         cv2.imshow("Frame", frame)
-
+        # on esc pressed
         key = cv2.waitKey(1)
         if key == 27:
             break
 
     cap.release()
     cv2.destroyAllWindows()
-    quit(10000)
+    exit()
