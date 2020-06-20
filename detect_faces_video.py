@@ -1,9 +1,5 @@
 # to start run: python detect_faces_video.py --prototxt deploy.prototxt.txt --model res10_300x300_ssd_iter_140000.caffemodel
 print("now!!!")
-# remove mp3 to avoid errors
-import os
-os.remove("pad.mp3")
-os.remove("niatfd.mp3")
 # import the necessary packages
 import cv2
 import argparse
@@ -11,7 +7,7 @@ import time
 import imutils
 import numpy as np
 import blinkcheck
-import Voice as v
+import voice as v
 from imutils.video import VideoStream
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()

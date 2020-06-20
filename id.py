@@ -8,7 +8,7 @@ import pickle
 import cv2
 import time
 import smtplib
-import Voice as v
+import voice as v
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-e", "--encodings", required=True,

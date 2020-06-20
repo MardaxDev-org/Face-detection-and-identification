@@ -11,4 +11,4 @@ def speak(text, language, filename):
     # play speech
     ps(filename)
     # remove mp3 file to avoid errors
-    os.remove("filename")
+    os.remove(filename)
