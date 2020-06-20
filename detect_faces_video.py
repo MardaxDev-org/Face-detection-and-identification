@@ -7,6 +7,7 @@ import time
 import imutils
 import numpy as np
 import blinkcheck
+import Voice as v
 from imutils.video import VideoStream
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -59,6 +60,9 @@ while go == 0:
             print("Face in sight!!!")
             time.sleep(0.5)
             if confidence >= 0.90:
+                # say "person at door" with english accent
+                v.speak("person at door", "en")
+                # start blinkcheck.py
                 blinkcheck.cb()
 
         # draw the bounding box of the face along with the associated probability

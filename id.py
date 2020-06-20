@@ -8,7 +8,7 @@ import pickle
 import cv2
 import time
 import smtplib
-
+import Voice as v
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-e", "--encodings", required=True,
@@ -103,8 +103,11 @@ for encoding in encodings:
     print(name)
     if name != "unknown":
         print("Known person detected!!!")
-        # wait for 15s to and then restart
-        time.sleep(15)
+        # wait for 5s to and then say hi
+        time.sleep(5)
+        v.speak("Hi " + name + " welcome home")
+        # wait for 10s to and restart
+        time.sleep(10)
         print("re-run")
         os.system('python detect_faces_video.py --prototxt deploy.prototxt.txt --model res10_300x300_ssd_iter_140000.caffemodel')
     else: # person is unknown
