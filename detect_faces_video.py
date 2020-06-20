@@ -1,5 +1,9 @@
 # to start run: python detect_faces_video.py --prototxt deploy.prototxt.txt --model res10_300x300_ssd_iter_140000.caffemodel
 print("now!!!")
+# remove mp3 to avoid errors
+import os
+os.remove("pad.mp3")
+os.remove("niatfd.mp3")
 # import the necessary packages
 import cv2
 import argparse
@@ -58,10 +62,9 @@ while go == 0:
         # If it sees the face and it's close enough
         if confidence >= 0.90 and startX + startY + endX + endY <= 2000:
             print("Face in sight!!!")
+            v.speak("Person at door", "en", "pad.mp3")
             time.sleep(0.5)
             if confidence >= 0.90:
-                # say "person at door" with english accent
-                v.speak("person at door", "en")
                 # start blinkcheck.py
                 blinkcheck.cb()
 

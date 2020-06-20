@@ -100,12 +100,11 @@ for encoding in encodings:
     # update the list of names
     names.append(name)
     # print name of the person in person.png that was shot at line 76 in blinkcheck.py
-    print(name)
-    if name != "unknown":
-        print("Known person detected!!!")
+    if name != "Unknown":
+        v.speak(name + " is at the frontdoor", "en", "niatfd.mp3")
+        print(name + " is detected!!!")
         # wait for 5s to and then say hi
         time.sleep(5)
-        v.speak("Hi " + name + " welcome home")
         # wait for 10s to and restart
         time.sleep(10)
         print("re-run")
@@ -113,7 +112,7 @@ for encoding in encodings:
     else: # person is unknown
         print("WHO THE HELL IS THAT!!!")
         # Send a mail to
-        sendmail('Message', subject, 'person to send to')
+        # sendmail('Message', subject, 'person to send to')
 
 # loop over the recognized faces
 for ((top, right, bottom, left), name) in zip(boxes, names):
