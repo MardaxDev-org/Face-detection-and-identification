@@ -82,9 +82,9 @@ def cb():
                 cap.release()
                 # start face recognition program
                 os.system('python id.py --encodings encodings.pickle --image person.png')
-                print("ERROR!!! line 84: program id.py hasn't started or has quit.")
+                print("ERROR!!!\n Line 84: program id.py hasn't started or has quit.")
                 exit()
-        cv2.imshow("Frame", frame)
+        cv2.imshow("BC", frame)
         # on esc pressed
         key = cv2.waitKey(1)
         if key == 27:
